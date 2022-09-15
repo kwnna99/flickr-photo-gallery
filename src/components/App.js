@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {
   BrowserRouter,
   Route,
-  Routes
+  Switch
 } from 'react-router-dom';
 import axios from 'axios';
 import NotFound from "./NotFound";
@@ -46,10 +46,10 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
           <Nav />
-          <Routes>
-            <Route path="/:query" element={<PhotoContainer data={this.state.images} />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Switch>
+            <Route path="/:query" render={() => <PhotoContainer data={this.state.images} />} />
+            <Route path="*" component={NotFound} />
+          </Switch>
 
         </div>
       </BrowserRouter>
