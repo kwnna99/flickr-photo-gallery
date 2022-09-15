@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 import {
   BrowserRouter,
   Route,
-  Switch
+  Switch,
+  useLocation
 } from 'react-router-dom';
 import axios from 'axios';
 import NotFound from "./NotFound";
@@ -31,7 +32,7 @@ class App extends Component {
       });    
   }
   componentDidMount() {
-    this.performSearch(window.location.pathname);
+    this.performSearch(useLocation());
   }
 
   /**componentDidUpdate(){
