@@ -1,15 +1,16 @@
 import React,{Component} from 'react';
 import {
   BrowserRouter,
+  Redirect,
   Route,
-  Switch,
-  useLocation
+  Switch
 } from 'react-router-dom';
 import axios from 'axios';
 import NotFound from "./NotFound";
 import Nav from "./Nav";
 import apiKey from '../config.js';
 import PhotoContainer from './PhotoContainer';
+import SearchForm from './SearchForm';
 
 
 class App extends Component {
@@ -31,25 +32,19 @@ class App extends Component {
         console.log('Error fetching and parsing data', error);
       });    
   }
-  componentDidMount() {
-    this.performSearch(useLocation());
-  }
-
-  /**componentDidUpdate(){
-    console.log(this.state.query);
-    if(window.location.pathname!==this.state.query){
-      this.performSearch(window.location.pathname);
-      this.setState({query:window.location.pathname});
-    }
-  }*/
+  
   render() {
     return (
       <BrowserRouter>
         <div className="container">
-          <Nav />
+        <SearchForm onSearch={this.performSearch} />
+          <Nav forLinks={this.performSearch} />
           <Switch>
-            <Route path="/:query" render={() => <PhotoContainer data={this.state.images} />} />
-            <Route path="*" component={NotFound} />
+            <Route exact path="/" render={()=> <Redirect to="/cats" />} />
+            <Route path="/:query(cats|dogs|computers)" render={() => <PhotoContainer data={this.state.images} searchImg={this.performSearch}/>} />
+            <Route path="/search/:query" render={() => <PhotoContainer data={this.state.images} searchImg={this.performSearch} />} />
+            <Route path="/error" render={()=> <NotFound />} />
+            <Route path="*" render={()=> <Redirect to="/error" />} />
           </Switch>
 
         </div>
