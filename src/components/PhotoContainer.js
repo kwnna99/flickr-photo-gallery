@@ -21,15 +21,17 @@ const PhotoContainer = (props) => {
   if(photos.length>0){
     return (
       <div className='photo-container'>
-      <h2>Results</h2>
+      <h2>{`${query} Gifs`}</h2>
         <ul>
           {photos}    
         </ul>
       </div>
     );}else{
       return(      <div className='photo-container'>
-      <h2>Results</h2>
-        {msg}
+      <div className='not-found'>
+        <h3>No Results Found</h3>
+        <p>You search did not return any results. Please try again.</p>
+      </div>
       </div>);
     }
 }
