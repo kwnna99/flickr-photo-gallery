@@ -1,5 +1,6 @@
 import React,{useEffect} from 'react';
 import Photo from './Photo';
+import NoResults from './NoResults';
 import { useParams } from 'react-router-dom';
 
 const PhotoContainer = (props) => {
@@ -27,12 +28,7 @@ const PhotoContainer = (props) => {
         </ul>
       </div>
     );}else{
-      return(      <div className='photo-container'>
-      <div className='not-found'>
-        <h3>No Results Found</h3>
-        <p>You search did not return any results. Please try again.</p>
-      </div>
-      </div>);
+      return(<NoResults />);
     }
 }
 
