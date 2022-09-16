@@ -38,7 +38,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
         <SearchForm onSearch={this.performSearch} />
-          <Nav forLinks={this.performSearch} />
+          <Nav />
           <Switch>
             <Route exact path="/" render={()=> <Redirect to="/cats" />} />
             <Route path="/:query(cats|dogs|computers)" render={() => <PhotoContainer data={this.state.images} searchImg={this.performSearch}/>} />
