@@ -1,13 +1,15 @@
 import React,{useEffect} from 'react';
 import Photo from './Photo';
 import NoResults from './NoResults';
+import Spinner from './Spinner';
 import { useParams } from 'react-router-dom';
 
 const PhotoContainer = (props) => {
   let { query } = useParams();
+  let search= props.searchImg;
   let photos=[];
     useEffect(() => {
-    props.searchImg(query);
+    search(query);
   }, [query]);
 
   if(props.data.length>0){
@@ -18,13 +20,15 @@ const PhotoContainer = (props) => {
   if(photos.length>0){
     return (
       <div className='photo-container'>
-      <h2>{`${query} Gifs`}</h2>
+      <h2>{`${query} Images`}</h2>
         <ul>
         {photos}
         </ul>
       </div>
-    );}else{
+    );}else if(!props.loading){
       return(<NoResults />);
+    }else{
+      return(<Spinner />);
     }
 }
 

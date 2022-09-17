@@ -18,7 +18,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: []
+      images: [],
+      loading:false
     }
   } 
 
@@ -28,7 +29,8 @@ class App extends Component {
         axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
         .then(response => {
           this.setState({
-            images: response.data.photos.photo
+            images: response.data.photos.photo,
+            loading:false
           });
         })
         .catch(error => {
@@ -48,8 +50,8 @@ class App extends Component {
 
             <Switch>
               <Route exact path="/" render={()=> <Redirect to="/cats" />} />
-              <Route exact path="/:query(cats|dogs|computers)" render={() => <PhotoContainer data={this.state.images} searchImg={this.performSearch} />} />
-              <Route exact path="/search/:query" render={() => <PhotoContainer data={this.state.images} searchImg={this.performSearch} />} />
+              <Route exact path="/:query(cats|dogs|computers)" render={() => <PhotoContainer data={this.state.images} searchImg={this.performSearch} loading={this.state.loading} />} />
+              <Route exact path="/search/:query" render={() => <PhotoContainer data={this.state.images} searchImg={this.performSearch} loading={this.state.loading} />} />
               <Route path="/error" render={()=> <NotFound />} />
               <Route path="*" render={()=> <Redirect to="/error" />} />
             </Switch>   
