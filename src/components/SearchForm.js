@@ -12,7 +12,6 @@ export function SearchForm(props) {
      */
     const handleSubmit = e => {
         e.preventDefault();
-        props.onSearch(e.target.search.value)
         history.push(`/search/${e.target.search.value}`)
         e.currentTarget.reset();
     }
