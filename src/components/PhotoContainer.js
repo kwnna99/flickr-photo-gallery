@@ -17,18 +17,19 @@ const PhotoContainer = (props) => {
       return <Photo img={`https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} key={photo.id} alt={photo.title}/>
     }); 
   }
-  if(photos.length>0){
-    return (
-      <div className='photo-container'>
-      <h2>{`${query} Images`}</h2>
-        <ul>
-        {photos}
-        </ul>
-      </div>
-    );}else if(!props.loading){
-      return(<NoResults />);
+  if(props.loading){
+    return(<Spinner />);
+}else if(photos.length>0){
+  return (
+    <div className='photo-container'>
+    <h2>{`${query} Images`}</h2>
+      <ul>
+      {photos}
+      </ul>
+    </div>
+  );
     }else{
-      return(<Spinner />);
+      return(<NoResults />);
     }
 }
 
