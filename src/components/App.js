@@ -23,6 +23,7 @@ class App extends Component {
     }
   } 
 
+  // search and fetch data via the Flickr API
   performSearch = (query) => {
 
       this.setState({loading: true}, function () {
@@ -40,14 +41,13 @@ class App extends Component {
   }
 
 
-  
+  //Navigation Handling and rendering of the ever-present components
   render() {
     return (
       <BrowserRouter>
         <div className="container">
         <SearchForm />
           <Nav />
-
             <Switch>
               <Route exact path="/" render={()=> <Redirect to="/cats" />} />
               <Route exact path="/:query(cats|dogs|computers)" render={() => <PhotoContainer data={this.state.images} searchImg={this.performSearch} loading={this.state.loading} />} />

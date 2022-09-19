@@ -6,10 +6,7 @@ export function SearchForm(props) {
 
     let history = useHistory();
 
-    /**
-     * when called it sends the value of the inputRef to the onSearch prop, then navigates the user
-     * to the url of that searched item and resets the input field 
-     */
+    //handle the submission of the search form by navigating the user to the appropriate page
     const handleSubmit = e => {
         e.preventDefault();
         history.push(`/search/${e.target.search.value}`)

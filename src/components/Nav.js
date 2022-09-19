@@ -2,6 +2,7 @@ import React from 'react';
 import  {NavLink} from 'react-router-dom';
 
 
+//main nav menu
 
 const Nav = (props) => {
     return(
