@@ -41,7 +41,7 @@ class App extends Component {
   }
 
 
-  //Navigation Handling and rendering of the ever-present components
+  //Navigation Handling and rendering of the ever-present components. Any unknown route redirects to the /error page
   render() {
     return (
       <BrowserRouter>
